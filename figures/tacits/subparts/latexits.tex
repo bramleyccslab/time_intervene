@@ -1,0 +1,9 @@
+P(X_2 = 1 |X_1=0) &= \mathbin{\color{cyan}w_B}\\
+P(X_2 = 1 |X_1=1) &= \mathbin{\color{cyan}1 - (1-w_B)(1-w_S)}
+P(x_e = 1 |x_{c+}=1) &= 1 - (1-w_0)(1-w_1)^n
+P(x_e = 1 |x_{c-}=1) &= w_0(1-w_1)
+
+p(X_2^{t^{\prime}}|X_1^{t})
+
+ X_2^{t^{\prime}}  = X_2^{t} + \theta (\beta_{X_1 \rightarrow X_2}X_1^t - X_2^t) + N(0,\sigma)\\
+ X_2^{t^{\prime}}  = X_2^{t} + \theta (\sum_i \beta^i_{X_i \rightarrow X_2}X_i^t - X_2^t) + N(0,\sigma)

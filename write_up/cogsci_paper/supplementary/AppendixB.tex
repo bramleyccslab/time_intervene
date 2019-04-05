@@ -1,0 +1,199 @@
+%!TEX root = ../main.tex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%APPENDIX TO TIME PAPER
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Representing time} % Main appendix title
+
+\label{app:b} % For referencing this appendix elsewhere, use \ref{AppendixA}
+
+\fancyhead[LO,RE]{Appendix B. \emph{Representing time}} % This is for the header on each page - perhaps a shortened title
+
+
+%   % redefine the command that creates the equation no.
+% \renewcommand{\theequation}{A-\arabic{equation}}
+%   \setcounter{equation}{0}  % reset counter 
+
+\section{Collider likelihood}
+
+\subsection*{Pooled model}
+For the Collider in Experiments 6 and 7, event $E$ happens as the two causal influences of $A$ and $B$ arrived (i.e., conjunctive common-effect; see Equation~\ref{eq:time_collider}). Thus, the observed between-event intervals $t_{AE}$ and $t_{BE}$ may contain waiting time and so do not necessarily reflect the underlying causal delays $t_{A\rightarrow E}$ and $t_{B\rightarrow E}$ as we have assumed for the other structures. To model the joint likelihood of the two observed intervals, we have to discriminate two cases: Either (1) the causal influence of B was waiting for the influence of A and therefore E happened as the delay of A arrived (i.e., $t_{AE} = t_{A\rightarrow E}$ but $t_{BE} \geq t_{B\rightarrow E}$) or (2) the causal influence of A was waiting for the influence of B to arrive and E happened as the delay of B arrived (i.e., $t_{BE} = t_{B\rightarrow E}$ but $t_{AE} \geq t_{A\rightarrow E}$).
+
+Let the influence of B waiting for A (i.e., Case 1). In this case, the joint likelihood is given by the gamma likelihood of $t_{AE}$ (as $t_{AE}$ does in fact equal $t_{A\rightarrow E}$  and is therefore gamma distributed) weighted by the probability of $t_{BE}$ being in fact larger than the respective gamma distributed event $t_{B\rightarrow E}$. As we assume the same parameters $\alpha$ and $\mu$ for both links (pooled model), the likelihood can be written as
+\begin{equation}
+p(t_{AE}, t_{BE}|\alpha,\mu; t_{AE} = t_{A\rightarrow E}, t_{BE} \geq t_{B\rightarrow E}) = p(t_{AE}|\alpha,\mu)\cdot  p(t_{BE}\geq t_{B\rightarrow E}|\alpha,\mu)
+\end{equation}
+
+Analogously, for the case in which A is waiting for B (i.e., Case 2) it holds
+\begin{equation}
+p(t_{AE}, t_{BE}|\alpha,\mu; t_{AE} \geq t_{A\rightarrow E}, t_{BE} = t_{B\rightarrow E}) = p(t_{BE}|\alpha,\mu)\cdot  p(t_{AE}\geq t_{A\rightarrow E}|\alpha,\mu)
+\end{equation}
+
+As both cases are mutual exclusive and therefore constitute a partitioning of the joint likelihood, the joint likelihood can be written as a sum of both (law of total probability)
+
+\begin{align}
+p(t_{AE}, t_{BE}|\alpha,\mu) &= p(t_{AE}, t_{BE}|\alpha,\mu; t_{AE} = t_{A\rightarrow E}, t_{BE} \geq t_{B\rightarrow E}) + p(t_{AE}, t_{BE}|\alpha,\mu; t_{AE} \geq t_{A\rightarrow E}, t_{BE} = t_{B\rightarrow E}) \\
+&= p(t_{AE}|\alpha,\mu)\cdot p(t_{BE}\geq t_{B\rightarrow E}|\alpha,\mu) + p(t_{BE}|\alpha,\mu)\cdot p(t_{AE}\geq t_{A\rightarrow E}|\alpha,\mu)
+\label{eq:time_collider_pooled_conjunctive}
+\end{align}
+with $p(t_{AE}|\alpha,\mu)$ and $p(t_{BE}|\alpha,\mu)$ being gamma distributed and $p(t_{AE}\geq t_{A\rightarrow E}|\alpha,\mu)$ and $p(t_{BE}\geq t_{B\rightarrow E}|\alpha,\mu)$ following the gamma's cumulative distribution function with
+
+\begin{equation}
+p(t_{AE}\geq t_{A\rightarrow E}|\alpha,\mu) = \int\limits_0^{t_{AE}} \frac{(\frac{\alpha}{\mu})^\alpha}{\Gamma(\alpha)} (x)^{\alpha \,-\, 1} e^{- \frac{\alpha}{\mu} x }~dx
+\end{equation}
+and for $p(t_{BE}\geq t_{B\rightarrow E}|\alpha,\mu)$ analogously.
+
+\subsection*{Independent model}
+
+In the independent model, each causal connection between a variable $X$ and its effect $Y$ is assumed to have its own set of parameters $\alpha_{XY}$ and $\mu_{XY}$. Therefore, the Collider likelihood in the independent model is given by
+
+\begin{align}
+p(t_{AE}, t_{BE}|\alpha_{AE}, \alpha_{BE},\mu_{AE}, \mu_{BE}) = &p(t_{AE}|\alpha_{AE},\mu_{AE})\cdot p(t_{BE}\geq t_{B\rightarrow E}|\alpha_{BE},\mu_{BE})\notag\\ &+ p(t_{BE}|\alpha_{BE},\mu_{BE})\cdot p(t_{AE}\geq t_{A\rightarrow E}|\alpha_{AE},\mu_{AE})
+\label{eq:time_collider_independent_conjunctive}
+\end{align}
+
+\subsection*{Disjunctive Collider}
+
+In our experiments, we used conjunctive Colliders. However, in other scenarios a disjunctive combination function of the causal influences may be more natural. In this case, the activation time of effect event $E$ is determined by the first arrival of the causes' influences
+
+\begin{equation}
+t_E = \min [t_A + t_{A\rightarrow E}, t_B + t_{B\rightarrow E}]
+\end{equation}
+In this case, one of the underlying causal delays $t_{A\rightarrow E}$ or $t_{B\rightarrow E}$ is overshadowed by $E$'s happening resulting in a smaller observed delay. Analogously to the conjunctive Collider, there are two cases: (1) the influence of A arrives first, causing E to happen and overshadowing the influence of B (i.e., $t_{AE} = t_{A\rightarrow E}$ but $t_{BE} \leq t_{B\rightarrow E}$) and (2) the influence of B arrives first overshadowing the influence of A (i.e., $t_{BE} = t_{B\rightarrow E}$ but $t_{AE} \leq t_{A\rightarrow E}$). Thus, the joint likelihood of a disjunctive (pooled delay) Collider can be written as
+\begin{align}
+p(t_{AE}, t_{BE}|\alpha,\mu) &= p(t_{AE}|\alpha,\mu)\cdot p(t_{BE}\leq t_{B\rightarrow E}|\alpha,\mu) + p(t_{BE}|\alpha,\mu)\cdot p(t_{AE}\leq t_{A\rightarrow E}|\alpha,\mu) \\
+&= p(t_{AE}|\alpha,\mu)\cdot (1-p(t_{BE}\geq t_{B\rightarrow E}|\alpha,\mu)) + p(t_{BE}|\alpha,\mu)\cdot (1-p(t_{AE}\geq t_{A\rightarrow E}|\alpha,\mu))
+\label{eq:time_collider_pooled_disjunctive}
+\end{align}
+
+\section{Simple Monte Carlo estimation: Experiment 6 and 7}
+
+As there is no closed form solution for the marginal likelihoods $p(\da|\mm)$ of data $\da$ under structure $\mm$, we used a simple Monte Carlo sampling scheme to approximate the multiple integral. For this purpose, we drew $B=100,000$ independent samples from the respective parameters' prior distributions $p(\lambda|\mm)$, $p(\alpha|\mm)$ and $p(\mu|\mm)$ and averaged over the likelihoods (see Equation~\ref{eq:time_marginal_likelihood}) at the sampled points in parameter space
+
+\begin{align}
+p(\da|\mm) &= \int p(\da|\lambda,\alpha,\mu; \mm)\cdot p(\lambda|\mm)\cdot p(\alpha|\mm)\cdot p(\mu|\mm)~d\lambda~d\alpha~d\mu \\
+&= \frac{1}{B} \sum_{b=1}^{B} p(\da|\lambda^{(b)}, \alpha^{(b)}, \mu^{(b)}; \mm)
+\end{align}
+with $\lambda^{(b)}$, $\alpha^{(b)}$, and $\mu^{(b)}$ being the $b$'s sampled points from the prior distributions.
+
+
+
+\section{Markov Chain Monte Carlo estimation: Experiment 8}
+
+In Experiment 8, we could use an uninformative prior for the parameters of the gamma distribution (as no collider was involved). For one causal link and the gamma's $(\alpha, \theta)$ parametrization with $\mu=\frac{\alpha}{\theta}$, we can derive the posterior based on a conjugate prior assuming ``no prior observations''
+
+\begin{equation}
+p(\alpha, \theta|\da;\mm)\propto \frac{p^{\alpha-1}e^{-\frac{q}{\theta}}}{\Gamma(\alpha)^n\theta^{\alpha n}}
+\end{equation}
+for $n$ data points $\da$ with $p=\prod{d_i}$ and $q=\sum{d_i}$.\footnote{Note that we describe delays in terms of their shape $\alpha$ and mean $\mu$ in the main text to aid exposition.  However, in statistical applications including approximating inference it is more common and more convenient to work with shape and rate $\theta$.} The normalizing constant of the equation's right hand side is our target of interest, namely the marginal likelihood of the data given the structure of interest $p(\da|\mm)$. To approximate the integral, we used a two-step procedure:
+
+\begin{enumerate}
+\item We generated a sample from the posterior over $\alpha$ and $\theta$ via the Metropolis--Hastings algorithm (i.e., MCMC) with 10,000 points sampled from 10 chains each with Gaussian proposal distribution on $\alpha$ ($SD=10$) and $\theta$ ($SD=5$) and burn-in of 1,000 and only each tenth point taken (i.e., thinning). We run the sampler ten times to check for convergence \citep[see][]{gelman2004bayesian}.
+\item We used the obtained sample to estimate the marginal likelihood with the method proposed by \cite{chib2001marginal}. Although the method formally works with just one sampled point, we used a subset to generate a more stable estimate.% as the posterior distribution that we sample from is very ``bumpy''. \srtodo{Maybe there is a better term/description for this.} 
+We randomly drew 1,000 points from the MCMC sample and took the 50 points with the largest likelihoods in this subsample. For each of these points, we calculated the marginal likelihood estimate with the method proposed by \cite{chib2001marginal} and averaged over these to get our estimate of $p(\da|\mm)$.
+\end{enumerate}
+
+\section{Checking sensitivity to priors}
+
+We can assess the sensitivity of the Simple Monte Carlo model predictions to prior choices by comparing them to the predictions of the Markov Chain Monte Carlo procedure we used to estimate posteriors in Experiment 8.  The Markov Chain procedure gives posterior predictions based on an uninformative ``improper'' \citep{hartigan2012bayes} prior but cannot be used for the Collider structure in Experiment 6 and 7.  We see in Figures~\ref{fig:time_exp5_sensitivity_alpha} and \ref{fig:time_exp5_sensitivity_mu} that there is a little sensitivity to choice of priors on $\alpha$ and $\mu$.  Particularly, too high a rate for $\mu$ leads to an initial preference for shorter delays and hence the chain under which the delays are necessarily shorter.  Additionally, too low a rate for either $\alpha$ or $\mu$ led to less stable predictions as few samples fall in the range of the true generative model.  However, our chosen values of 0.1 for $\alpha$ and 0.0001 for $\mu$ make these effects negligible for the range of event timings we consider the current experiments.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width = .9\columnwidth]{time_exp5_sensitivity_alpha}
+\caption[Experiment 8: Sensitivity of Model Predictions on $\alpha$ Prior]{Sensitivity of $\alpha$ prior on model predictions in Experiment 8.  Left hand column (teal line) shows predictions using an ``improper'' uninformative prior.  Other columns show predictions under different priors on $\alpha$.  Asterisk indicates the values used for Experiment 6 and 7.  The prior on $\mu$ for these simulations was Exponential($0.0001)$.  As in Figure~\ref{fig:time_exp5_evidence_predictions}, individual points are for subsets of the tests seen by different participants at different points during the experiment.}
+\label{fig:time_exp5_sensitivity_alpha}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width = .9\columnwidth]{time_exp5_sensitivity_mu}
+\caption[Experiment 8: Sensitivity of Model Predictions on $\mu$ Prior]{Sensitivity of $\mu$ prior on model predictions in Experiment 8.  Left hand column (teal line) shows predictions using an ``improper'' uninformative prior.  Other columns show predictions under different priors on $\mu$.  Asterisk indicates the values used for Experiment 6 and 7.  The prior on $\alpha$ for these simulations was Exponential($0.1)$.}
+\label{fig:time_exp5_sensitivity_mu}
+\end{figure}
+
+\clearpage
+
+\section{Correlations Among Heuristic Predictors in Experiment 8}
+
+\begin{table}[h!]
+\caption{Experiment 8: Correlation Between Heuristic Measures}
+\centering
+\footnotesize{
+\begin{tabularx}{\columnwidth}{lXXXXXXX}
+\toprule
+\multicolumn{8}{l}{First Judgment (after 6 tests)}\\
+\midrule
+& cor$(t_{SA},t_{SB})$ & $\sigma(t_{SA})$ & $\sigma(t_{SB})$ & $\sigma(t_{AB})$ & $\apd(t_{SA})$ & $\apd(t_{SB})$ & $\apd(t_{AB})$ \\ 
+\midrule
+$\de_I$  &   0.69 & -0.03 & 0.42 & -0.31 & -0.01 & 0.52 & -0.44 \\ 
+cor$(t_{SA},t_{SB})$ &    & -0.02 & 0.13 & -0.66 & 0.01 & 0.23 & -0.68 \\ 
+$\sigma(t_{SA})$ &    &  & 0.15 & 0.16 & 0.69 & 0.12 & 0.13 \\ 
+$\sigma(t_{SB})$ &    &  &  & 0.51 & 0.16 & 0.90 & 0.42 \\ 
+$\sigma(t_{AB})$ &    &  &  &  & 0.12 & 0.39 & 0.88 \\ 
+$\apd(t_{SA})$ &    &  &  &  &  & 0.20 & 0.17 \\ 
+$\apd(t_{SB})$ &    &  &  &  &  &  & 0.33 \\ 
+\midrule
+\multicolumn{8}{l}{Second and Third Judgments (after all 12 tests)}\\
+\midrule
+&  cor$(t_{SA},t_{SB})$ & $\sigma(t_{SA})$ & $\sigma(t_{SB})$ & $\sigma(t_{AB})$ & $\apd(t_{SA})$ & $\apd(t_{SB})$ & $\apd(t_{AB})$ \\ 
+\midrule
+$\de_I$   & 0.97 & -- & 0.38 & -0.61 & 0.04 & 0.45 & -0.63 \\ 
+cor$(t_{SA},t_{SB})$  &  &  & 0.24 & -0.70 & 0.04 & 0.37 & -0.77 \\ 
+$\sigma(t_{SA})$  &  &  & -- & -- & -- & -- & -- \\ 
+$\sigma(t_{SB})$   &  &  &  & 0.51 & 0.03 & 0.93 & 0.38 \\ 
+$\sigma(t_{AB})$   &  &  &  &  & -0.01 & 0.37 & 0.92 \\ 
+$\apd(t_{SA})$   &  &  &  &  &  & 0.12 & 0.05 \\ 
+$\apd(t_{SB})$   &  &  &  &  &  &  & 0.24 \\ 
+\bottomrule
+\end{tabularx}
+}
+\vspace{.3cm}
+\raggedright
+
+\scriptsize{\emph{Note}: In Experiment 8, $\sigma(t_{SA})$ was the same for all devices so it is uncorrelated with all measures once all evidence has been observed.}
+\end{table}
+
+
+\section{Estimating posteriors in Experiment 9}
+
+In order to calculate normative Bayesian predictions for model judgments in Experiment 9, based on knowledge of the parameters $\alpha, \mu,\ws$, data $\da$ and interventions $\ci$, we need to calculate the likelihood for every possible pattern of actual causation under each model $\mm\in\calm$ (we call these $\zz\in \zzz_{\da}^{\mm}$) summing over them to get a marginal likelihood for $p(\da|\mm,\ci)$.  We can calculate the likelihood of a specific path $\zz$ as the product of the likelihood of each event occurring at the time it did, given when its parent occurred in $\zz$, combined with the failure-likelihood of any non-occurring events that the model predicted should have occurred but did not occur in $\zz$ $\phi\in\Phi_{\zz}$.  These failures could either be due to the $1-\ws$ causal failure rate, or due to the effect simply failing to occur before the end of the $[0,\tau]$ observational window.  Similarly to Equation~\ref{eq:time_gamma_distribution} in Chapter~\ref{ch:time}, we can compute the likelihood of each particular event occurring at time $d^{(i)}_X$ given its parent in $\zz$ --- $\pa_{\zz}(d^{(i)}_X)$ --- occurred at time $t^{\pa(i)}_{\zz}$ and parameters $\ww = [\alpha, \mu,\ws]$.  This is the product of the likelihood of delay $d^{(i)}_X - t^{\pa(i)}_{\zz}$ multiplied by the $\ws$ probability that the causal connection worked, giving
+\begin{equation}
+p(d^{(i)}_X |\pa_{\zz}(d^{(i)}_X), \tau, \ww) = \ws \frac{(\frac{\alpha}{\mu})^\alpha}{\Gamma(\alpha)} \left(d^{(i)}_X - t^{\pa(i)}_{\zz}\right)^{\alpha \,-\, 1} e^{- \frac{\alpha}{\mu} \left(d^{(i)}_X -t^{\pa(i)}_{\zz}\right) } .
+%\label{eq:ti_event_probability}
+\end{equation}
+We must also consider the probability of any unexpected non-events $\phi\in\Phi_{\zz}$.  How surprising these are depends on how close to the end of the observational period the would-have-been parent $\pa_{\zz}(\phi)$ occurred (e.g. $t^{\pa(\phi)}_{\zz}$).  We can compute these probabilities by adding the chance that the event does not occur at all, to the probability that $\phi$ is still to occur after the end of the observational window.  We can write this as
+
+\begin{equation}
+p(\phi |\pa_{\zz}(\phi), \tau, \ww) = (1-\ws) +  p(\phi |\pa_{\zz}(\phi), \tau, \ww)\ws
+\end{equation}
+where $p(\phi>\tau |\pa_{\zz}(\phi), \ww)$ is the complement of the cumulative distribution for the Gamma delay function offset by the timing of the parent:
+\begin{equation}
+	p(\phi>\tau |\pa_{\zz}(\phi), \tau, \ww) = \frac{1}{\Gamma(\alpha)}\Gamma(\alpha, \frac{\alpha}{\mu}(\tau - t^{\pa(\phi)}_{\zz}) ) .
+\end{equation}
+(e.g. the chance that the activation is still to occur).  The likelihood of a particular model and path of actual causation $P(\mm, \zz)$ is thus the product of the likelihood of all events that did occur (all $d\in\da$) given their parent in $\zz$ (which could be another event in $\da$ or an intervention in $\ci$), and the likelihood of the failure of each event that did not occur
+
+\begin{equation}
+	P(\da|\mm,\tau,\zz,\ww;\ci) = \prod_{d^{(i)}\in\da} p(d^{(i)}|\pa_{\zz}(d^{(i)}), \ww) \prod_{\phi \in \Phi} p(\phi |\pa_{\zz}(\phi), \ww)
+\end{equation}
+ The marginal likelihood of model $\mm$ is then
+
+\begin{equation}
+p(\da|\mm,\tau,\ww;\ci) = \sum_{\zz^\prime \in Z^{\da}_{\mm}}p(\da,{\zz}^{\prime} |\tau,\ww;\ci)
+\label{eq:ti_mar_li}
+\end{equation}
+As in the other chapters, a posterior over models $P(\mmm|\da,\tau,\ww;\ci)$ can then be calculated using Equation~\ref{eq:formal_posterior}.
+
+\subsection{Approximating the sum over \textbf{Z}}
+
+Our method for calculating the likelihood of the data $\da$ in Experiment 9 required summing over all the possible causal paths $\zz\in \zzz_{\da}^{\mm}$ (e.g. Equation~\ref{eq:ti_mar_li}).  However, the cardinality of $\zzz_{\da}^{\mm}$ grows on the order of $2^n$.  Thus for some trials --- especially those for four variable cyclic devices in which there could be hundreds of activations in total --- $|\zzz_{\da}^{\mm}|$ was far too large to consider explicitly.  However, the large majority of these paths were extremely unlikely to occur.  Thus we used up to three approximations to reduce these to a managable number for each trial.  First we always excluded all causal paths that implied delays that were highly implausible (and outwith the range of any delays actually produced by true causal structures in generating the actual evidence).  For the \emph{reliable} condition we ruled out causal paths with delays less than 1000ms or more than 2000ms.  For the \emph{variable-within} and \emph{variable-between} conditions we ruled out causal paths with delays of less than 150ms or more than 5600ms.
+
+If this still resulted in too many paths to reasonably evaluate, we reduced the number of paths greedily, by removing the least likely cause of the most ambiguous event as a candidate.  For example, one event might have 10 candidate causes, while the next most ambiguous have 8.  Thus we would remove the least likely of these 10 causes from the pool of candidates, and repeat until the product of all sets of candidate causes per event fell below 2,000.
+
+Finally, on a small number of cyclic device trials where participants intervened rapidly leading to many concurant activation streams, we randomly subsampled  $\zzz_{\mathrm{sub}}^{\mm}$ and renormalised our likelihood estimate
+
+\begin{equation}
+p(\da|\mm,\tau;\ci) \approx  \frac{|\zzz_{\mathrm{\da}}^{\mm}|}{|\zzz_{\mathrm{sub}}^{\mm}|} \sum_{\zz^\prime \in \zzz^{\mathrm{sub}}_{\mm}}p(\da,{\zz}^{\prime} |\mm,\tau;\ci)
+\end{equation} 
+
+%Code for our estimation is availabe at \url{theurl}.\ntodo{Add this!}

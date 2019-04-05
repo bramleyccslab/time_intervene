@@ -1,0 +1,1 @@
+<?php header( 'Location: http://www.ucl.ac.uk/lagnado-lab/experiments/neil/it/experiment_1/exp1.html' ) ; ?>

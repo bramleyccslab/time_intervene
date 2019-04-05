@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="css/stylesheet.css"/>
+
+  <!-- Libraries -->
+  <script src="lib/ivank.js"></script>
+  <script src="lib/jquery.min.js"></script>
+  <script src="lib/color.js"></script>
+</head>
+
+<body>
+
+
+  <div>
+    <textarea id="conditionDetails" type="text" readonly="readonly" rows="25" cols="40"></textarea>
+  </div>
+
+  <div id="game">
+    <iframe src="game.html" width=600 height=400 id="game-frame" name="thename"></iframe>
+  </div>
+
+  <div id="button">
+   <button type="button" name="button" id="startButton"; onclick="Start();"; >Start</button>
+   </div>
+
+ <div id="button">
+   <button type="button" name="button" id="stopButton"; onclick="Stop();"; >Stop</button>
+ </div>
+
+ <div id="button">
+   <button type="button" name="button" id="pauseButton"; onclick="Pause();"; >Pause</button>
+ </div>
+
+ <div id="button">
+   <button type="button" name="button" id="resumeButton"; onclick="Resume();"; >Resume</button>
+ </div>
+
+<br>
+<a href="#" download="data.csv" id=btnSave > Export data</a>
+<br>
+
+ <div id="select_settings">
+   <p> Select settings or have them assigned randomly</p><br>
+   <fieldset>
+    <legend>Select settings</legend>
+
+    <fieldset style="float:left;width:200px;margin:5px">
+      Condition<br>
+      <input type="radio" name="overall_condition" id="co_pa"  >Passive<br>
+      <input type="radio" name="overall_condition" id="co_ac"  checked="checked">Active<br>
+    </fieldset>
+
+   <fieldset style="float:left;width:200px;margin:5px">
+      Mode<br>
+      <input type="radio" name="mode" id="mo_pr"  >Practice<br>
+      <input type="radio" name="mode" id="mo_te"  checked="checked" >Test<br>
+    </fieldset>
+
+    <fieldset style="float:left;width:200px;margin:5px">
+      Background<br>
+      <input type="radio" name="background" checked="checked" id="ba_no">None<br>
+      <input type="radio" name="background" id="ba_al">All<br>
+      <input type="radio" name="background" id="ba_ro"  >Roots<br>
+    </fieldset>
+
+    <fieldset style="float:left;width:200px;margin:5px">
+      Node location mode<br>
+      <input type="radio" name="loc_mode" checked="checked" id="loc_even">Even<br>
+      <input type="radio" name="loc_mode" id="loc_rand"  >Random<br>
+    </fieldset>
+
+    <fieldset style="float:left;width:200px;margin:5px">
+      Number of nodes:<br>
+      <input type="text" value="4" id="input_n">
+    </fieldset>
+
+    <fieldset style="float:left;width:200px;margin:5px">
+      Density of network (0, 1):<br>
+      <input type="text" value="0.3" id="input_density">
+    </fieldset>
+
+
+    <fieldset style="float:left;width:200px;margin:5px">
+      Timeout (seconds):<br>
+      <input type="text" value="60" id="input_timeout">
+    </fieldset>
+
+    <fieldset style="float:left;width:200px;margin:5px">
+      Background level(N events per node per second):<br>
+      <input type="text" value="0.05" id = "input_background">
+    </fieldset>
+
+    <fieldset style="float:left;width:200px;margin:5px">
+      Contingency (0, 1):<br>
+      <input type="text" value="0.9" id = "input_contingency">
+    </fieldset>
+
+    <fieldset style="float:left;width:200px;margin:5px">
+      Delay mean:<br>
+      <input type="text" value="1500" id="input_delay_mean">
+    </fieldset>
+
+    <fieldset style="float:left;width:200px;margin:5px">
+      Delay shape:<br>
+      <input type="text" value="200" id = "input_delay_shape">
+    </fieldset>
+
+    <fieldset style="float:left;width:200px;margin:5px">
+      Time space correlation (-1, 1):<br>
+      <input type="text" value="0" id="input_time_space_cor">
+    </fieldset>
+
+  </fieldset>
+
+  <br><br>
+
+</div>
+
+
+
+<div>
+  <textarea id="dataBox" type="text" readonly="readonly" rows="200" cols="200"></textarea>
+</div>
+
+<!-- Javascript here -->
+<script>
+
+function Start() {
+
+  ///////////////////////////////
+  //Read in user defined settings
+  ///////////////////////////////
+  if ($(co_pa).prop("checked") == true) {
+
+    cond = 'passive';
+  } else if ($(co_ac).prop("checked") == true) {
+
+    cond = 'active';
+  }
+
+  if ($(mo_pr).prop("checked") == true) {
+
+    mode = 'practice';
+  } else if ($(mo_te).prop("checked") == true) {
+
+    mode = 'test';
+  }
+
+  if ($(ba_al).prop("checked") == true) {
+
+    bn = 'all';
+  }  else if ($(ba_ro).prop("checked") == true) {
+
+    bn = 'roots';
+  } else {
+    bn = 'none';
+  }
+
+  if ($(loc_even).prop("checked") == true) {
+
+    locMode = 'even';
+  } else if ($(loc_rand).prop("checked") == true) {
+
+    locMode = 'random';
+  }
+
+  N = Number($(input_n).val());
+  density = Number($(input_density).val());
+  timeout = Number($(input_timeout).val());
+  background = Number($(input_background).val());
+  contingency = Number($(input_contingency).val());
+  delay_mu = Number($(input_delay_mean).val());
+  delay_alpha = Number($(input_delay_shape).val());
+  time_space_cor = Number($(input_time_space_cor).val());
+
+  params = {
+    cond: cond,
+    mode: mode,
+    bn: bn,
+    N: N,
+    locMode: locMode,
+    density: density,
+    timeout: timeout,
+    background: background,
+    contingency: contingency,
+    delay_mu: delay_mu,
+    delay_alpha: delay_alpha,
+    time_space_cor: time_space_cor
+  };
+
+  var iframe = document.getElementById("game-frame");
+
+  if (iframe) {
+    var iframeContent = (iframe.contentWindow || iframe.contentDocument);
+
+    iframeContent.Start();
+
+
+    document.getElementById("startButton").disabled = true;
+    document.getElementById("stopButton").disabled = false;
+    document.getElementById("pauseButton").disabled = false;
+    document.getElementById("resumeButton").disabled = true;
+
+  }
+}
+
+function Stop() {
+
+  var iframe = document.getElementById("game-frame");
+
+  if (iframe) {
+    var iframeContent = (iframe.contentWindow || iframe.contentDocument);
+
+
+    iframeContent.Stop();
+
+    document.getElementById("startButton").disabled = false;
+    document.getElementById("stopButton").disabled = true;
+    document.getElementById("pauseButton").disabled = true;
+    document.getElementById("resumeButton").disabled = true;
+    var tmp = iframeContent.data;
+    datastring = '';
+    for (var i = 0; i < tmp.eventTimings.length; i++) {
+      for (var j = 0; j < tmp.eventTimings[i].length; j++) {
+
+          datastring = datastring + '\n From ' + (tmp.eventOrigins[i][j]).toString() + ' to ' + (i).toString() + ' taking ' + tmp.eventDelays[i][j].toString() + ' arriving at ' + tmp.eventTimings[i][j].toString();
+
+      }
+    }
+    //console.log(tmp, datastring)
+    document.getElementById("dataBox").value = datastring;
+  }
+}
+
+function Pause() {
+  var iframe = document.getElementById("game-frame");
+  if (iframe) {
+    var iframeContent = (iframe.contentWindow || iframe.contentDocument);
+    iframeContent.Pause();
+
+    // document.getElementById("dataBox").value = iframeContent.history;
+  }
+
+  document.getElementById("startButton").disabled = true;
+  document.getElementById("stopButton").disabled = false;
+  document.getElementById("pauseButton").disabled = true;
+  document.getElementById("resumeButton").disabled = false;
+
+      var tmp = iframeContent.data;
+    datastring = '';
+    for (var i = 0; i < tmp.eventTimings.length; i++) {
+      for (var j = 0; j < tmp.eventTimings[i].length; j++) {
+
+          datastring = datastring + '\n From ' + (tmp.eventOrigins[i][j]).toString() + ' to ' + (i).toString() + ' taking ' + tmp.eventDelays[i][j].toString() + ' arriving at ' + tmp.eventTimings[i][j].toString();
+
+      }
+    }
+    //console.log(tmp, datastring)
+    document.getElementById("dataBox").value = datastring;
+}
+
+function Resume() {
+  var iframe = document.getElementById("game-frame");
+  if (iframe) {
+    var iframeContent = (iframe.contentWindow || iframe.contentDocument);
+    iframeContent.Resume();
+  }
+
+  document.getElementById("startButton").disabled = true;
+  document.getElementById("stopButton").disabled = false;
+  document.getElementById("pauseButton").disabled = false;
+  document.getElementById("resumeButton").disabled = true;
+}
+
+// document.getElementById("game-frame").oncontextmenu = function(){ return false; };
+
+function exportToCSV() {
+
+  var iframe = document.getElementById("game-frame");
+  if (iframe) {
+    var iframeContent = (iframe.contentWindow || iframe.contentDocument);
+    var csv = iframeContent.data;
+  }
+
+
+csv = 'an, arbitrary, string';
+csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
+console.log('csv',csv, csvData);
+
+$(this)
+.attr({
+  'href': csvData,
+  'target': '_blank'
+});
+
+}
+
+$("#btnExport ").on('click', function (event){
+
+  exportToCSV.apply();
+})
+</script>
+
+</body>
+</html>

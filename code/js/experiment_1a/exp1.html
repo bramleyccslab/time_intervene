@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="css/stylesheet.css"/>
+
+  <!-- Libraries -->
+  <script src="lib/ivank.js"></script>
+  <script src="lib/jquery.min.js"></script>
+  <script src="lib/color.js"></script>
+  
+  <script src="js/utils.js"></script>
+</head>
+
+<body>
+
+  <!-- Instructions page 1 [display:block]-->
+  <div class="slide" id="welcome"  style="display:block">
+    <h1>University College London, Experimental Psychology</h1>
+    <div class="blue" id="ins1para1">
+
+      <p> By answering the following questions, you are participating in a study being performed by cognitive scientists in the UCL Department of Experimental Psychology. If you have questions about this research, please contact us at <a href="neil.bramley@ucl.ac.uk">neil.bramley@ucl.ac.uk</a>. 
+      </p>
+      
+      <p>By selecting the "I Agree" button below, you acknowledge that:</p>
+      <ul>
+        <li>You must be at least 18 years old to participate.</li>
+        <li>Your participation in this research is voluntary.</li>
+        <li>You may decline to answer any or all of the following questions by closing this window in your browser.</li>
+        <li>You may decline further participation, at any time, without adverse consequences.</li>
+        <li>Your anonymity is assured; the researchers who have requested your participation will not receive any personal information about you.</li>
+    </ul>        
+    <br>
+    <p style="text-align: center;">If you agree to the above and would like to participate in the experiment, please press <b>I Agree</b> to proceed with the instructions.  Otherwise you may close the window.</p>
+    <br>
+  </div>
+
+  <div class="continue">
+    <button type="button" id = "i-agree" class="next" disabled = "true" onclick="ClickContinue('welcome', 'ins1')">I Agree</button>
+  </div>
+</div>
+
+<!-- Instructions page 1 [display:block]-->
+
+<div class="slide" id="ins1"  style="display:none">
+  <h1>Instructions</h1>
+  <div class="blue" id="ins1para1">
+
+    <p>In this task you will try to work out how several causal devices work.</p>
+
+    <p>The causal devices look like this:</p>
+
+    <div class = "instruction_screenshots">
+      <div class = "screenshot">
+        <figure>
+          <img src="images/example_network_annotated.png" alt="screenshot" width = 90%>
+          <figcaption>Figure 1: A device.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class = "spacer"></div>
+
+    <p>Some of the components are connected together while others are not.  Your job is to work out the where the connections are in each device.</p>
+
+    <p>There are <span style="font-weight:bold">12</span> devices in total.</p>
+
+    <p>You will get to interact with each device for <span style="font-weight:bold">45</span> seconds.</p>
+
+    <p>During this time, you will be able to turn components on by left clicking on them.  You are allowed to do this <span style="font-weight:bold">6</span> times in total for each device.</p>
+
+    <p>When you turn on component on it will be marked with a <span style="font-weight:bold">"+"</span> and will activate.  When a component activates, it is marked by turning yellow for a moment.  It will then normally activate any other components that it connects to, after a delay.  These can then activate other components after a further delay, and so on according to the causal connections.</p>
+
+    <p>In the example below, the person turns on the top component.  A little while later the bottom left component turns on. Then, a while after that the bottom right component turns on.</p>
+
+    <div class = "instruction_screenshots">
+      <div class = "screenshot">
+        <figure>
+          <img src="images/example_activations.png" alt="screenshot", width="200%">
+          <figcaption>Figure 2: Interacting with the device.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class = "spacer"></div>
+
+
+    <p>The connections work <span style="font-weight:bold">90%</span> of the time.</p>
+
+    <!--       <p>And sometimes one of the components will turn on by itself without being cause to by one of the other components.  This happens about <span style="font-weight:bold">3</span> times a minute! -->
+    <p>Components never activate by themselves but only if they are caused to do so by you (yellow and marked by a "+") OR as knock-on effect of one of the other component activations (yellow, no "+").</p>
+
+    <br>
+    <p><span style="font-weight:bold">Note</span>:  Please do not change the zoom level during the experiment.
+      he experiment only works properly if you have your <span style="color:red">browser zoom level on 100% throughout</span>.
+      (You can change the zoom level to 100% by pressing "cmd+0" on a mac or "ctrl+0" on a PC.)</p>
+
+      <br>
+
+      <p style="text-align: center;">Please press <b>Continue</b> to proceed with the instructions. </p>
+
+    </div>
+
+    <div class="continue">
+      <button type="button" class="next" onclick="ClickContinue('ins1', 'ins2')">Continue</button>
+      <!-- 'ins2' -->
+    </div>
+  </div>
+
+
+
+  <!-- Instructions page 2 -->
+
+  <div class="slide" id="ins2" style="display:none">
+    <h1>Instructions</h1>
+    <div class="blue">
+
+
+
+
+      <p id='rel_both_ins2' style="display:none">On average, the connections always take around <span style="font-weight:bold">1.5</span> seconds to work.<br><br> However, there is a little bit of variability <span style="font-weight:bold">within</span> each connection. Sometimes the same connection will work slightly faster, other times slightly slower.</p>
+      <p id='var_both_ins2' style="display:none">On average, the connections take around <span style="font-weight:bold">1.5</span> seconds to work.<br><br>However there is quite a lot of variation <span style="font-weight:bold">within</span> each connection.  Sometimes the same connection will work a lot faster, other times a lot slower.</p>
+      <p id='rel_within_var_between_ins2' style="display:none">On average, connections take around <span style="font-weight:bold">1.5</span> seconds to work.<br><br>However there is quite a lot of variation <span style="font-weight:bold">between</span> the different connections.  Some always work faster, others always work slower.</p>
+
+      <p>Here is an example device to help you get the idea.  The picture on the left shows where the true connections go.  Push start to watch the device in action.</p>
+
+
+
+      <div class = "spacer"></div>
+
+      <div id="example_container" style="text-align:center">
+        <div class = "screenshot">
+          <figure>
+            <img id="example_pic" alt="screenshot">
+            <figcaption>Figure 3. The true connections for the example device on the right.</figcaption>
+          </figure>
+        </div>
+
+
+
+        <div class = "screenshot">
+          <iframe src="example.html" width=350 height=250 id="example-frame" style="background: #FFFFFF;"></iframe>
+        </div>
+
+        <button type="button" id="start_example_button" class="next" onclick="StartExample()">Start</button>
+
+      </div>
+
+      <div class = "spacer"></div>
+
+      <p>Remember, your job is to work out where the true connections go.</p>
+
+      <p>You mark where you think they go by left clicking in the grey boxes between each pair of components.  This cycles through the different options (forward connection, backward connection, both ways connection, no connection).  Once you have got the connection(s) you want, click the "Confirm" button to lock in the changes.</p>
+
+      <p><span style="font-weight:bold">Try this now in the example above</span>.</p>
+
+      <p>Try to mark the true connections in the example above so they match the picture on the left.  You can move on once you have done this.</p>
+
+      <br/>
+      <p style="text-align: center;">Please press <b>Continue</b> to proceed with the instructions. </p>
+    </div>
+
+    <div class="continue">
+      <button type="button" id = "continue_ins2" class="next" disabled = "true" onclick="ClickContinue('ins2', 'ins3')">Continue</button>
+    </div>
+  </div>
+
+  <!-- Instructions page 3 -->
+
+  <div class="slide" id="ins3" style="display:none">
+    <h1>Instructions</h1>
+    <div class="blue">
+      <p>Your goal is to identify the true connections.  You will get 5 cents for each space where you:</p><br>
+
+      <p>(1) Correctly identify that there is a <em>forward connection</em><br><br>
+        (2) Correctly identify that there is <em>backward connection</em><br><br>
+        (3) Correctly identify that there is a connection going in <em>both directions</em><br><br>
+        (4) Correctly identify that there is <em>no connection</em>.</p>
+        <br>
+        <p>If you mark anything other than the correct connection you get no bonus for that space.</p>
+
+        <p>The bonuses will be based on randomly chosen time for each device.  Sometimes this will be nearer the beginning, sometimes near the end of the 45 seconds.  You will not be able to tell.</p>
+        <p><span style="font-weight:bold">This means you should try to mark the right connections (and confirm them) as quickly as possible!  You can make changes at any time during the trial by clicking in the grey boxes and pressing confirm.</span></p>
+
+        <p>At the end of each problem, you will see feedback showing the true causal connections and how many you had identified right by the end.</p>
+
+
+
+
+        <div class = "instruction_screenshots">
+          <div class = "screenshot">
+            <figure>
+              <img src="images/example_feedback.png" alt="screenshot">
+              <figcaption>Figure 4. Feedback.  The the true connections are shown in grey with wide arrowheads.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class = "spacer"></div>
+
+        <p>In the example above, the person correctly identified the connection at the top right and made 5 cents.  However the person marked <em>no connection</em> for the top left space but there was actually a connection (top to bottom left), and marked <em>both directions</em> for the space at the bottom when the true connection really only went in one direction (bottom left to bottom right).  This gave the person a 5 cent bonus in total for this device.</p>
+
+        <p><span style="font-weight:bold">Remember:</span> The bonuses will be based on randomly chosen time points during the task, not what you have marked by the end of each problem.  This means you should mark your best guess as quickly as possible!</p>
+
+        <br/>
+        <p style="text-align: center;">Please press <b>Continue</b> to proceed with the instructions. </p>
+
+      </div>
+
+      <div class="continue">
+        <button type="button" class="next" onclick="ClickContinue('ins3', 'comprehension_check')">Continue</button>
+      </div>
+    </div>
+
+
+    <!-- COMPREHENSION CHECK[display:none]-->
+
+    <div class="slide" id="comprehension_check" style="display:none">
+      <h1>Comprehension check</h1>
+      <div class="blue">
+        <p>Please indicate for each statement whether it is <b>correct</b> or <b>false</b>.</p>  
+        <hr>
+        <p id=q1q>"Your job is to work out where the true connections go."</p>
+        <div class="spacer"></div>
+        <input class = "comprehensionQ" type="radio" name="q1" id="q1cor" value="correct" onclick = "ContinueComprehension()"> correct
+        <input class = "comprehensionQ" type="radio" name="q1" value="false"  onclick = "ContinueComprehension()"> false
+        <div class="spacer"></div>
+        <hr>
+        <p id=q2q>"You can activate components up to 12 times."</p>
+        <div class="spacer"></div>
+        <input class = "comprehensionQ" type="radio" name="q2" value="correct" onclick = "ContinueComprehension()"> correct
+        <input class = "comprehensionQ" type="radio" name="q2" id="q2cor" value="false"  onclick = "ContinueComprehension()"> false
+        <div class="spacer"></div>
+        <hr>
+        <p id=q3q>  "The connections work with 90% probability."</p>
+        <div class="spacer"></div>
+        <input class = "comprehensionQ" type="radio" name="q3" id="q3cor" value="correct" onclick = "ContinueComprehension()"> correct
+        <input class = "comprehensionQ" type="radio" name="q3"value="false"  onclick = "ContinueComprehension()"> false
+        <div class="spacer"></div>
+        <hr>
+        <p id=condition_dependent_comprehension_question></p>
+        <div class="spacer"></div>
+        <input class = "comprehensionQ" type="radio" name="q4" id="q4cor" value="correct" onclick = "ContinueComprehension()"> correct
+        <input class = "comprehensionQ" type="radio" name="q4" value="false"  onclick = "ContinueComprehension()"> false
+        <div class="spacer"></div>
+        <hr>
+        <p id=q5q>"You get a bonus based on the connections you have correct at the end of each problem."</p>
+        <div class="spacer"></div>
+        <input class = "comprehensionQ" type="radio" name="q5" value="correct" onclick = "ContinueComprehension()"> correct
+        <input class = "comprehensionQ" type="radio" name="q5" id="q5cor" value="false"  onclick = "ContinueComprehension()"> false
+        <hr>
+        <div class="spacer"></div>
+
+        <p style="text-align: center"> Please click <b>Continue</b> to proceed.</p>  
+      </div>
+
+      <div class="continue" >
+        <button type="button" class="next" id="comprehension" disabled = "true" onclick="CheckComprehension()">Continue</button>
+      </div>
+    </div>
+
+
+    <!-- COMPREHENSION PASS-->
+    <div class="slide" id="comprehension_pass" style="display:none">
+      <div class="blue">
+        <br>
+        <p style="text-align: center">Well done, you got all the questions correct!</p>
+
+        <p style="text-align: center">You are now ready to start the task.</p>
+
+        <br> 
+
+        <p style="text-align: center">The first problem is a practice, then you will be playing for points.</p>
+        <br>
+        <p style="text-align: center"> Please click <b>Continue</b> to proceed.</p> 
+      </div>
+
+      <div class="continue" >
+        <button type="button" class="next" id="comprehension_pass" onclick="ClickContinue('comprehension_pass', 'trial')">Continue</button>
+      </div>
+    </div>
+
+
+    <!-- COMPREHENSION FAIL-->
+
+    <div class="slide" id="comprehension_fail" style="display:none">
+      <div class="blue">
+
+        <p>Unfortunately, you didn't answer all of the comprehension check questions correctly.</p>
+        <br>
+
+        <p>Please have another close look at the instructions and work out whether these statements are correct or false:</p>
+
+        <p id="comprehension_failed_questions"></p>
+
+      </div>
+      <div class="continue" >
+        <button type="button" class="next" id="comprehension_fail" onclick="ClickContinue('comprehension_fail', 'ins1')">Continue</button>
+      </div>
+    </div>
+
+
+
+    <!-- TRIAL-->
+
+    <div class="slide" id="trial" style="display:none">
+      <div id="progress">
+        <div id="progress-text">Progress</div>
+        <div id="indicator-container">
+          <div id="indicator-outer">
+            <div id="indicator-stage"></div>
+          </div>
+        </div>
+        <div class="spacer"></div>
+      </div>
+      <hr />
+      <div id="stim">
+        <div id ="prompt-text"> </div>
+        <div class="spacer"></div>
+
+        <div id="main_task_container" style="text-align:center">
+         <iframe src="game.html" width=600 height=400 id="game-frame"></iframe>
+         <br>
+
+       </div>
+
+     </div>
+
+     <p id = "lower-prompt-text" style="text-align: center;">Click <span style="font-weight: bold">Start</span> to begin.</p>
+     <div class="continue">
+       <button type="button" id="start_button" class="next" onclick="StartTrial()">Start</button>
+       <!-- <button type="button" id="submit_button" class="next" disabled = "true" onclick="SubmitResponse()">Submit</button> -->
+       <button type="button" id="trial_next_button" class="next" disabled = "true" onclick =" NextTrial()">Continue</button>
+     </div>
+
+   </div>
+
+
+
+   <!-- PERFORMANCE FEEDBACK -->
+
+   <div class="slide" id="performance_feedback" style="display:none">
+    <h1>Performance feedback</h1>
+    <div class="blue">
+      <div class = "feedback_text">
+      </div> 
+    </div> 
+    <div class="continue">
+      <button type="button" class="next" id="feedback"  onclick =" ClickContinue('performance_feedback', 'demographics')">Continue</button>
+    </div>
+  </div>
+
+
+
+  <!-- DEMOGRAPHICS -->
+
+  <div class="slide" id="demographics" style="display:none">
+    <h1>Demographic information</h1>
+    <div class="blue">
+      <p> How did you work out where the connections were?  What did you find particularly easy/hard?  Did you have a stragey, if so what was it?  Did you spot any bugs or errors?  </p>
+
+      <textarea name="feedback" style="width:760px; height:100px;"  ></textarea> 
+
+      <p><b>Please answer the following questions about yourself to complete the experiment</b>:</p>
+
+      <p><b>1.</b> Age:
+        <input class = "demoQ numberQ" type="number" maxlength = "3" name="age" min="18" max="100" step = "1"> years
+      </p>
+
+      <p><b>2.</b> Gender:
+        <input class = "demoQ" type="radio" name="sex" value="female">Female
+        <input class = "demoQ" type="radio" name="sex" value="male">Male
+      </p>
+      <br/>
+
+      <br/>
+
+      <p>Please press finish to complete the experiment.</p>
+
+    </div> 
+
+    <div class="continue">
+      <button type="button" class="next" id="exp_finish" disabled = "true" onclick ="FinishExperiment()">Finish</button>
+    </div>
+  </div>
+
+
+  <div class="slide" id="thank-you" style="display:none">
+    <h1>Experiment complete</h1>
+    <div class="blue">
+      <br>
+      <p>Thank you, you have now completed the experiment!</p>
+      <p>You may now return to Prolific Academic and enter the following code.</p>
+      <h2 id="display-upi"></h2>
+      <p>You will receive your bonus in the next 72 hours</p>
+      <p>Thank you for participating!</p>
+    </div>
+
+    <!-- Main JS -->
+    <script src="js/main.js"></script>
+  </body>
+  </html>
