@@ -23,7 +23,7 @@ Causal inference in domain of point events with gamma delays
   	- `order_only_predictions.r` linking to _The Order of Things_ (2014 cogsci paper) we wondered if a pure event order constraint heuristic would work at all on these data (it doesn't because it doesn't prefer the more recent event over all other prior events so no signal)
   	- `plots_design.r` some plotting of the task itself without behavioural data
   	- `plots_*.r` lots of plotting, lots of redundancy, variants for talks, thesis, conference paper etc
-  	- 'read_in_squl_data*.r' reads the csv files (exported from the sql database) and cleans up the data into R dataframes.
+  	- `read_in_squl_data*.r` reads the csv files (exported from the sql database) and cleans up the data into R dataframes.
   	- `simulate_data.r` creates some hand chosen toy data for plotting I think
   	- `tacits` some extra plotting for the _Time and Causality in the Sciences_ book chapter
 - `data` many of these `.rdata` files probably obselete but keeping incase
