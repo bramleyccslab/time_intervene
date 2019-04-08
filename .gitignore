@@ -10,6 +10,7 @@ bn*
 **/*.glo
 **/*.idx
 **/*.log
+**/*.fls
 **/*.toc
 **/*.ist
 **/*.acn
@@ -29,5 +30,6 @@ bn*
 **/*.mtc1
 **/*.out
 **/*.synctex.gz
+**/*.fdb_latexmk
 
 
