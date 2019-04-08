@@ -39,7 +39,7 @@ centers = [(150, 400-286.6),(150, 400-113.4),(286.6, 200)]
 def make_frame(t):
     
     frame = int(math.floor(t*60))
-    print frame
+    print(frame)
 
     #Essentially pauses the action if there are no more frames and but more clip duration
     if frame >= len(events["A"]):
@@ -94,7 +94,7 @@ clip = mpy.VideoClip(make_frame, duration=duration)#, fps=60?\
 
 #Create the filename (adding 0s to ensure things are in a nice alphabetical order now)
 writename = '../../movies/cc_example.mp4'
-print writename
+print(writename)
 
 #Write the clip to file
 clip.write_videofile(writename, fps=24)#
