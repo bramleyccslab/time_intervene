@@ -89,10 +89,9 @@ Causal inference in domain of point events with gamma delays
     - `individual_fits*` likelihoods and posteriors saved separately for each participant
     - `*.csv` original data files from mTurk and prolific
     - `NS_*` "Neuraths ship" referring to the varieties of heuristic compared in the cogsci paper
-    
-    		- `adapt_between` a subtle hacky addition meaning that for the _between_ condition, the learner would store the inferred delay for a putative causal link and use that to shape their judgements about subsequent candidate causation
 		- `boost` variants that overwrite online evolving belief with participants latest online judgment where available (this inflates the correlation with participants but also probably distorts the comparison, we didn't do this in the end)
-		- `bonus*` bonus payment stuff
+		    		- `adapt_between` a subtle hacky addition meaning that for the _between_ condition, the learner would store the inferred delay for a putative causal link and use that to shape their judgements about subsequent candidate causation
+	- `bonus*` bonus payment stuff
 - `figures` hundreds of figures arranged by purpose
 
 - `movies` some demo movies created with quicktime or using the python script for demonstration purposes
