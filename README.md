@@ -1,6 +1,6 @@
-# time_intervene
-Causal inference in domain of point events with gamma delays
+# Time -- Intervene
 
+Causal inference in domain of point events with gamma delays
 
 ## File rundown (April 2019)
 
@@ -33,31 +33,32 @@ Causal inference in domain of point events with gamma delays
 	- `cogsci_data.rdata` the dataset used in the cogsci paper (subset from `pilot_data.rdata` used in thesis)
      - `df.sw` subjectwise (one row per participant) data.frame
 
-       - `upi` unique personal identifier
-       - `learn_cond` learning condition, all participants were `active`.  This variable is just in case we ever run versions with passive (observation only) participants that might watch another participant play or just watch a device activate by itself
-       - `delay_cond` which delay condition was the participant in? the actual parameters of the delay distributions are in `alpha` and `beta`
-       - `final_score` how many of the 54 edges (6 3-variabl 3-edge and 6 4-variable 6-edge problems) were correctly identified (out of their 4 states: no edge, forward, backward, bidirectional) _at the end_ of each trial
-       - `final_bonus` how many of the 54 edges were identified at the randomly timed bonus points across all trials (recalling we paid based on accuracy at random moments to incentivise efficiency and reporting of struture beliefs as soon as possible).  This determined how much bonus each participant made (5 cents per correct edge).
-       - `*_acc` the scores /54 to get the proportion of correct edge judgments
-       -  `n_ints` how many interventions (left clicks on components) were performed overall by the participant
-       - `n_effects` how many activations of components did they experience (aside from the interventions)
-       - `prop_nodes_tested` proportion of the components did they click on at least once?
-       - `int_space*` how long did they wait between one intervention and the next?
-       - `int_space_event*` how long did they wait on average between the most recent event and their next intervention?
-       - `int_pref_parent` how many times did they intervene on a root (parentless) component per time they intervened on a non-root component (or something like that, might be rescaled by ratio of roots to non-roots)
-       - `*.cy` measures computed for the 6 cyclic problems only
-       - `*.ncy` measures computed for the 6 noncyclic problems only
-       - `m_ent` the average posterior entropy (i.e. uncertainty) achieved by this participant under the ideal Bayesian analysis (lower is better, indicative of more informative intervention selection)
-       - `*3/4` variants restricted to the three variable problems or 4 variable problems (initial uncertainty is very different for these cases because there is a much larger space of 4 variable problems)
+     	- `upi` unique personal identifier
+      	- `learn_cond` learning condition, all participants were `active`.  This variable is just in case we ever run versions with passive (observation only) participants that might watch another participant play or just watch a device activate by itself
+     	- `delay_cond` which delay condition was the participant in? the actual parameters of the delay distributions are in `alpha` and `beta`
+     	- `final_score` how many of the 54 edges (6 3-variabl 3-edge and 6 4-variable 6-edge problems) were correctly identified (out of their 4 states: no edge, forward, backward, bidirectional) _at the end_ of each trial
+     	- `final_bonus` how many of the 54 edges were identified at the randomly timed bonus points across all trials (recalling we paid based on accuracy at random moments to incentivise efficiency and reporting of struture beliefs as soon as possible).  This determined how much bonus each participant made (5 cents per correct edge).
+     	- `*_acc` the scores /54 to get the proportion of correct edge judgments
+     	-  `n_ints` how many interventions (left clicks on components) were performed overall by the participant
+     	- `n_effects` how many activations of components did they experience (aside from the interventions)
+     	- `prop_nodes_tested` proportion of the components did they click on at least once?
+     	- `int_space*` how long did they wait between one intervention and the next?
+     	- `int_space_event*` how long did they wait on average between the most recent event and their next intervention?
+     	- `int_pref_parent` how many times did they intervene on a root (parentless) component per time they intervened on a non-root component (or something like that, might be rescaled by ratio of roots to non-roots)
+     	- `*.cy` measures computed for the 6 cyclic problems only
+     	- `*.ncy` measures computed for the 6 noncyclic problems only
+     	- `m_ent` the average posterior entropy (i.e. uncertainty) achieved by this participant under the ideal Bayesian analysis (lower is better, indicative of more informative intervention selection)
+     	- `*3/4` variants restricted to the three variable problems or 4 variable problems (initial uncertainty is very different for these cases because there is a much larger space of 4 variable problems)
 
     - `df.tw` a trialwise data.frame (one row per trial).  As with `df.sw` conventions except:
-      -  `trial` what position during the participants run though the experiment did this trial appear
-      - `trial_type` which of the 12 devices (in the order depicted in the paper figure 2) was the participant interacting with on this trial
-      - `n_nodes` how many components were there
-      - `n_ints` how many of the (max 6) interventional clicks did they perform
-      - `score` as with final score
-      - `bonus` as with final bonus
-      - `n_edges` how many edges (potential links) are in the network (3 variable network have 3 and 4 variable network have 6)
+    	
+	- `trial` what position during the participants run though the experiment did this trial appear
+      	- `trial_type` which of the 12 devices (in the order depicted in the paper figure 2) was the participant interacting with on this trial
+      	- `n_nodes` how many components were there
+      	- `n_ints` how many of the (max 6) interventional clicks did they perform
+      	- `score` as with final score
+      	- `bonus` as with final bonus
+      	- `n_edges` how many edges (potential links) are in the network (3 variable network have 3 and 4 variable network have 6)
       - `practice` there were two practice problems that were repeats of two of the other problems.  I think they've already been subset out of `cogsci_data` so this column is always true but they exist in the raw csv.
       - `graph` the index in DBN3 or DBN4 for the true network
       - `cyclic` does this network contain a loop?
@@ -76,14 +77,14 @@ Causal inference in domain of point events with gamma delays
 
     - `df.be` a beliefwise data.frame (one row per updated participant belief).  As with `df.tw` conventions except:
 
-      - `time` when in ms since beginning of the trial was this belief registered by the interface. A new belief was registered whenever participants hit the "confirm" button in the middle of the device after making some changes to their marked connections.  Total trial length 45,000 ms (the final response which is subject of most other analyses is automatically registered when timer hits zero, so at 45000 + a few 100ms lag)
+     - `time` when in ms since beginning of the trial was this belief registered by the interface. A new belief was registered whenever participants hit the "confirm" button in the middle of the device after making some changes to their marked connections.  Total trial length 45,000 ms (the final response which is subject of most other analyses is automatically registered when timer hits zero, so at 45000 + a few 100ms lag)
 
     - `df.ev` an eventwise data.frame (one row per activation or intervention).  As with other data.frames except:
 
-      - `location` which component was activating
-      - `type` was it an intervention "`action`" or an activation "`effect`"?
-      - `from` what is the ground truth as to which variable caused this activation if applicable
-      - `with_delay` how long was the ground truth actual causal delay from the cause event to this activation event?
+     - `location` which component was activating
+     - `type` was it an intervention "`action`" or an activation "`effect`"?
+     - `from` what is the ground truth as to which variable caused this activation if applicable
+     - `with_delay` how long was the ground truth actual causal delay from the cause event to this activation event?
 
 	- `mf_results.rdata` the model predictions (for cogsci paper)
 	- `individual_fits*` likelihoods and posteriors saved separately for each participant
