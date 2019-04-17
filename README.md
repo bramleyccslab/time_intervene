@@ -76,15 +76,14 @@ Causal inference in domain of point events with gamma delays
       - `p_truth` how likely was the true graph at the end (often this is the same graph as the most likely one but not necessarily).
 
     - `df.be` a beliefwise data.frame (one row per updated participant belief).  As with `df.tw` conventions except:
-
-     - `time` when in ms since beginning of the trial was this belief registered by the interface. A new belief was registered whenever participants hit the "confirm" button in the middle of the device after making some changes to their marked connections.  Total trial length 45,000 ms (the final response which is subject of most other analyses is automatically registered when timer hits zero, so at 45000 + a few 100ms lag)
+    	
+	- `time` when in ms since beginning of the trial was this belief registered by the interface. A new belief was registered whenever participants hit the "confirm" button in the middle of the device after making some changes to their marked connections.  Total trial length 45,000 ms (the final response which is subject of most other analyses is automatically registered when timer hits zero, so at 45000 + a few 100ms lag)
 
     - `df.ev` an eventwise data.frame (one row per activation or intervention).  As with other data.frames except:
-
-    - `location` which component was activating
-    - `type` was it an intervention "`action`" or an activation "`effect`"?
-    - `from` what is the ground truth as to which variable caused this activation if applicable
-    - `with_delay` how long was the ground truth actual causal delay from the cause event to this activation event?
+	- `location` which component was activating
+    	- `type` was it an intervention "`action`" or an activation "`effect`"?
+    	- `from` what is the ground truth as to which variable caused this activation if applicable
+    	- `with_delay` how long was the ground truth actual causal delay from the cause event to this activation event?
     
     - `mf_results.rdata` the model predictions (for cogsci paper)
     - `individual_fits*` likelihoods and posteriors saved separately for each participant
