@@ -63,7 +63,6 @@ Many of these `.rdata` files probably obselete but keeping incase.
   	- `*3/4` variants restricted to the three variable problems or variable 	problems (initial uncertainty is very different for thescases because 	there is a much larger space of 4 variable problems)
 
   - `df.tw` a trialwise data.frame (one row per trial).  As with `df.sw` conventions except:
-
 		- `trial` what position during the participants run though the experiment did this trial appear
     - `trial_type` which of the 12 devices (in the order depicted in the paper figure 2) was the participant interacting with on this trial
     - `n_nodes` how many components were there
@@ -88,11 +87,9 @@ Many of these `.rdata` files probably obselete but keeping incase.
     - `p_truth` how likely was the true graph at the end (often this is the same graph as the most likely one but not necessarily).
 
   - `df.be` a beliefwise data.frame (one row per updated participant belief). As with `df.tw` conventions except:
-		
 		- `time` when in ms since beginning of the trial was this belief registered by the interface. A new belief was registered whenever participants hit the "confirm" button in the middle of the device after making some changes to their marked connections.  Total trial length 45,000 ms (the final response which is subject of most other analyses is automatically registered when timer hits zero, so at 45000 + a few 100ms lag)
 
   - `df.ev` an eventwise data.frame (one row per activation or intervention). As with other data.frames except:
-
 		- `location` which component was activating
 		- `type` was it an intervention "`action`" or an activation "`effect`"?
 		- `from` what is the ground truth as to which variable caused this activation if applicable
@@ -103,7 +100,7 @@ Many of these `.rdata` files probably obselete but keeping incase.
 - `individual_fits*` likelihoods and posteriors saved separately for each participant
 
 - `NS_*` "Neuraths ship" referring to the varieties of heuristic compared in the cogsci paper
-	
+
 	- `boost` variants that overwrite online evolving belief with participants latest online judgment where available (this inflates the correlation with participants but also probably distorts the comparison, we didn't do this in the end)
 	- `adapt_between` a subtle hacky addition meaning that for the _between_ condition, the learner would store the inferred delay for a putative causal link and use that to shape their judgements about subsequent candidate causation
 
