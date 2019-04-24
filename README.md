@@ -2,8 +2,6 @@
 
 Causal inference in domain of point events with gamma delays.
 
-File rundown (April 2019)
-
 ## Code
 
 ### `js`
@@ -39,10 +37,14 @@ All the analyses and plotting.
 
 ## Data
 
-Many of these `.rdata` files probably obselete but keeping incase
+Many of these `.rdata` files probably obselete but keeping incase.
+
+- `*.csv` original data files from mTurk and prolific
 
 - `cogsci_data.rdata` the dataset used in the cogsci paper (subset from `pilot_data.rdata` used in thesis)
+
   - `df.sw` subjectwise (one row per participant) data.frame
+
   	- `upi` unique personal identifier
   	- `learn_cond` learning condition, all participants were `active`.  	This variable is just in case we ever run versions with passive 	(observation only) participants that might watch another participant 	play or just watch a device activate by itself
   	- `delay_cond` which delay condition was the participant in? the actual 	parameters of the delay distributions are in `alpha` and `beta`
@@ -61,14 +63,15 @@ Many of these `.rdata` files probably obselete but keeping incase
   	- `*3/4` variants restricted to the three variable problems or variable 	problems (initial uncertainty is very different for thescases because 	there is a much larger space of 4 variable problems)
 
   - `df.tw` a trialwise data.frame (one row per trial).  As with `df.sw` conventions except:
+
 		- `trial` what position during the participants run though the experiment did this trial appear
     - `trial_type` which of the 12 devices (in the order depicted in the paper figure 2) was the participant interacting with on this trial
     - `n_nodes` how many components were there
-    - `n_ints` how many of the (max 6) interventional clicks did theperform
+    - `n_ints` how many of the (max 6) interventional clicks did they perform
     - `score` as with final score
     - `bonus` as with final bonus
     - `n_edges` how many edges (potential links) are in the network (3 variable network have 3 and 4 variable network have 6)
-    - `practice` there were two practice problems that were repeats oftwo of the other problems.  I think they've already been subset outof `cogsci_data` so this column is always true but they exist inthe raw csv.
+    - `practice` there were two practice problems that were repeats ahead of the other problems.  I think they've already been subset out of `cogsci_data` so this column is always FALSE (they exist in the raw csv)
     - `graph` the index in DBN3 or DBN4 for the true network
     - `cyclic` does this network contain a loop?
     - `n_ev` how many events occurred in total
@@ -85,30 +88,35 @@ Many of these `.rdata` files probably obselete but keeping incase
     - `p_truth` how likely was the true graph at the end (often this is the same graph as the most likely one but not necessarily).
 
   - `df.be` a beliefwise data.frame (one row per updated participant belief). As with `df.tw` conventions except:
+		
 		- `time` when in ms since beginning of the trial was this belief registered by the interface. A new belief was registered whenever participants hit the "confirm" button in the middle of the device after making some changes to their marked connections.  Total trial length 45,000 ms (the final response which is subject of most other analyses is automatically registered when timer hits zero, so at 45000 + a few 100ms lag)
 
   - `df.ev` an eventwise data.frame (one row per activation or intervention). As with other data.frames except:
+
 		- `location` which component was activating
 		- `type` was it an intervention "`action`" or an activation "`effect`"?
 		- `from` what is the ground truth as to which variable caused this activation if applicable
 		- `with_delay` how long was the ground truth actual causal delay from the cause event to this activation event?
     
 - `mf_results.rdata` the model predictions (for cogsci paper)
-  - `individual_fits*` likelihoods and posteriors saved separately for each participant
-  - `*.csv` original data files from mTurk and prolific
-  - `NS_*` "Neuraths ship" referring to the varieties of heuristic compared in the cogsci paper
+
+- `individual_fits*` likelihoods and posteriors saved separately for each participant
+
+- `NS_*` "Neuraths ship" referring to the varieties of heuristic compared in the cogsci paper
+	
 	- `boost` variants that overwrite online evolving belief with participants latest online judgment where available (this inflates the correlation with participants but also probably distorts the comparison, we didn't do this in the end)
 	- `adapt_between` a subtle hacky addition meaning that for the _between_ condition, the learner would store the inferred delay for a putative causal link and use that to shape their judgements about subsequent candidate causation
-	- `bonus*` bonus payment stuff
+
+- `bonus*` bonus payment stuff
 
 ## Figures
 
-`figures` hundreds of figures arranged by purpose
+Hundreds of figures arranged by purpose.
 
 ## Movies
 
-Demo movies created with quicktime or using the python script for demonstration purposes
+Demo movies created with quicktime or using the python script for demonstration purposes.
 
 ## Write up
 
-Latex projects for the cogsci paper, the book chapter and some very old notes
+Latex projects for the cogsci paper, the book chapter and some very old notes.
