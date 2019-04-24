@@ -2,17 +2,19 @@
 
 Causal inference in domain of point events with gamma delays.
 
-## Code
+## File rundown (April 2019)
 
-### `js`
+### Code
+
+#### `js`
 
 The pilot experiment (condition selection randomised) and duplicates with the condition selection forced.
 
-### `python`
+#### `python`
 
 A script for making rudimentary videos from trial data.
 
-### `R`
+#### `R`
 
 All the analyses and plotting.
 
@@ -35,7 +37,7 @@ All the analyses and plotting.
 - `simulate_data.r` creates some hand chosen toy data for plotting Ithink
 - `tacits` some extra plotting for the _Time and Causality in theSciences_ book chapter
 
-## Data
+### Data
 
 Many of these `.rdata` files probably obselete but keeping incase.
 
@@ -106,14 +108,14 @@ Many of these `.rdata` files probably obselete but keeping incase.
 
 - `bonus*` bonus payment stuff
 
-## Figures
+### Figures
 
 Hundreds of figures arranged by purpose.
 
-## Movies
+### Movies
 
 Demo movies created with quicktime or using the python script for demonstration purposes.
 
-## Write up
+### Write up
 
 Latex projects for the cogsci paper, the book chapter and some very old notes.
