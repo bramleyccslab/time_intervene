@@ -5,11 +5,18 @@ rm(list=ls())
 load('../data/cogsci_data.rdata')
 
 # Get information about participants updating beliefs
-# Esp. removing arrows
+# For each participant and each trial, answer the following questions:
+# 1. How many times does this participant change her mind?
+# 2. How many of the belief changes are linkage-removals?
+# 3. What's her final belief?
 
+
+# Grab basic info
 base <- df.tw %>% select(ppt, trial, trial_type, n_nodes, delay_cond, graph)
 
-# Calculate belief update attributes per participant & per trial
+# Function that calculates belief update attributes per participant & per trial
+# @param {int}  pix participent_index
+# #param {int}  tix trial_index
 calc_belief_updates <- function(pix, tix) {
   
   # Check if participant presents
@@ -24,6 +31,8 @@ calc_belief_updates <- function(pix, tix) {
     
     # Q1: How many times does this participant change her mind?
     if (nrow(beliefs) > 1) {
+      # Loop through beliefs, if different from previous one then it is an update
+      # Otherwise it is a repeated belief
       beliefs_list <- beliefs[ ,1] # Vectorize
       repeated_beliefs <- vector()
       for (i in (2 : (length(beliefs_list)))) {
@@ -80,7 +89,7 @@ calc_belief_updates <- function(pix, tix) {
 }
 
 
-# Do stats for all instances
+# Create a belief_update dataframe
 df.bp <- data.frame(ppt=integer(),
                     trial=integer(),
                     belief_updates=integer(),
