@@ -3,6 +3,7 @@ library(sqldf)
 
 rm(list=ls())
 load('../data/cogsci_data.rdata')
+load('../data/prolific_data.rdata')
 
 # Get information about participants updating beliefs
 # For each participant and each trial, answer the following questions:
@@ -96,7 +97,7 @@ df.bp <- data.frame(ppt=integer(),
                     belief_removals=integer(),
                     final_belief=integer()) 
 
-for (p in (1:60)) {
+for (p in (1:83)) {
   for (t in (1:12)) {
     df.bp <- rbind(df.bp, calc_belief_updates(p, t))
   } 
