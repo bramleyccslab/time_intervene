@@ -44,7 +44,7 @@ calc_belief_updates <- function(pix, tix) {
       updated_beliefs <- if(length(repeated_beliefs) > 0) beliefs_list[-repeated_beliefs] else beliefs_list 
       belief_updates <- length(updated_beliefs)
     } else {
-      belief_updates <- 0 
+      belief_updates <- 0
     }
 
     
@@ -77,7 +77,12 @@ calc_belief_updates <- function(pix, tix) {
     
     
     # Q3: What's her final belief?
-    final_belief <- updated_beliefs[length(updated_beliefs)]
+    if (belief_updates > 0) {
+      final_belief <- updated_beliefs[length(updated_beliefs)]
+    } else {
+      final_belief <- beliefs[1,]
+    }
+    
     
     return(data.frame('ppt' = pix,
                       'trial' = tix,
@@ -110,10 +115,19 @@ save(file='../data/cogsci_data.rdata',df.tw, df.ev, df.be, df.bp, df.sw, df.tw, 
 # Results
 export <- df.bp
 sqldf("SELECT belief_removals, COUNT(*) n FROM export GROUP BY belief_removals")
-# blief_removals   n
+
+# cogsci data
+# blief_removals  n
 # 0 445
 # 1  28
 # 2   5
 # 3   1
 # 4   1
-# 3   1
+
+# prolific data
+# belief_removals   n
+# 0 902
+# 1  73
+# 2  17
+# 3   3
+# 4   1
