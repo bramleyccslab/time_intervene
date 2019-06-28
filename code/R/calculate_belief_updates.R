@@ -2,8 +2,8 @@
 library(sqldf)
 
 rm(list=ls())
-load('../data/cogsci_data.rdata')
-load('../data/prolific_data.rdata')
+datafile = '../data/prolific_data.rdata' #'../data/cogsci_data.rdata' 
+load(datafile)
 
 # Get information about participants updating beliefs
 # For each participant and each trial, answer the following questions:
@@ -102,15 +102,15 @@ df.bp <- data.frame(ppt=integer(),
                     belief_removals=integer(),
                     final_belief=integer()) 
 
-for (p in (1:83)) {
-  for (t in (1:12)) {
+for (p in (1 : max(df.tw$ppt))) {
+  for (t in (1 : max(df.tw$trial))) {
     df.bp <- rbind(df.bp, calc_belief_updates(p, t))
   } 
 }
 
 # Combine base + belief, and save the result
 df.bp <- merge(base, df.bp, by=c('ppt', 'trial'))
-save(file='../data/cogsci_data.rdata',df.tw, df.ev, df.be, df.bp, df.sw, df.tw, DBN3, DBN4, tgixs, get_ix)
+save(file=datafile,df.tw, df.ev, df.be, df.bp, df.sw, df.tw, DBN3, DBN4, tgixs, get_ix)
 
 # Results
 export <- df.bp
