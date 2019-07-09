@@ -208,7 +208,9 @@ summary(lm(final_acc ~ n_effects, data = df.sw)) # ***: More effects > worse acc
 
 
 
-
+#############################
+# Save up
+save(file=data_file, df.be, df.ev, df.sw, df.tw, DBN3, DBN4, tgixs, get_ix)
 
 
 
