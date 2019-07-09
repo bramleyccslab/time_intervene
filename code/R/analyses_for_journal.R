@@ -12,7 +12,8 @@ rm(list=ls())
 #####################################
 # Read in data
 
-load('../data/prolific_data.rdata')
+data_file = '../data/prolific_data.rdata' #'../data/cogsic_data.rdata'
+load(data_file)
 
 # Basic preps
 # Make sure all upi variables have the same levels in the same order (dropping the ones that are no longer involved)
@@ -190,6 +191,19 @@ t.test(df.sw$n_effects.cy/6, df.sw$n_effects.ncy/6, paired=T) # 95 percent confi
 msd(df.sw$n_effects.ncy/6) # $4.4\pm0.9$
 msd(df.sw$n_effects.cy/6) # $32.1\pm10.5$
 
+
+#############################
+# Preference for parents
+
+df.sw$int_pref_parent[1]<-mean(df.sw$int_pref_parent, na.rm=T)
+m0<-lm(final_acc ~ delay_cond, data = df.sw)
+m1<-lm(final_acc ~ delay_cond + int_pref_parent,data = df.sw) # Same as cogsci data - yes (**)
+m2<-lm(final_acc ~ delay_cond * int_pref_parent,data = df.sw) # Different from cogsci, YES (**)
+summary(m1)
+summary(m2)
+
+summary(lm(final_acc ~ int_pref_parent, data = df.sw)) # **: Intervene on parents -> much higher acc
+summary(lm(final_acc ~ n_effects, data = df.sw)) # ***: More effects > worse accuracy
 
 
 
